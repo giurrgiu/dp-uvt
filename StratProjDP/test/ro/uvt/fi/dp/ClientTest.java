@@ -17,7 +17,7 @@ class ClientTest {
 
     @BeforeEach
     void setup() {
-        client = new Client("John Pork", "Timisoara, Str. 67");
+        client = new Client.Builder("John Pork", "Timisoara, Str. 67").build();
     }
 
     // Tests for adding accounts feature
@@ -72,6 +72,39 @@ class ClientTest {
     void getAccount_caseSensitive() {
         client.addAccount(new AccountRON("RON001", 100.0));
         assertNull(client.getAccount("ron001"));
+    }
+
+    // Tests for Builder pattern
+
+    @Test
+    @DisplayName("Builder with only required fields creates a valid client")
+    void builder_requiredFieldsOnly_createsClient() {
+        Client c = new Client.Builder("Ionut Lengyel", "Oradea").build();
+        assertEquals("Ionut Lengyel", c.getName());
+        assertNotNull(c.toString());
+    }
+
+    @Test
+    @DisplayName("Builder email setter sets the optional email field")
+    void builder_withEmail_setsEmail() {
+        Client c = new Client.Builder("Ionut Lengyel", "Oradea")
+                .email("imiplacesamananc@gmail.com")
+                .build();
+        assertTrue(c.toString().contains("Ionut Lengyel"));
+    }
+
+    @Test
+    @DisplayName("Builder email setter returns the same builder instance for chaining")
+    void builder_emailReturnsSameBuilder() {
+        Client.Builder builder = new Client.Builder("Ionut Lengyel", "Oradea");
+        assertSame(builder, builder.email("imiplacesamananc@gmail.com"));
+    }
+
+    @Test
+    @DisplayName("Builder client starts with an empty account list")
+    void builder_clientStartsWithEmptyAccounts() {
+        Client c = new Client.Builder("Ionut Lengyel", "Oradea").build();
+        assertNull(c.getAccount("ANY_CODE"));
     }
 
     // Tests for testing operations on accounts

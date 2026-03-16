@@ -22,8 +22,8 @@ class BankTest {
     @BeforeEach
     void setup() {
         bank = new Bank("BCR Bank");
-        client1 = new Client("John Pork", "Timisoara, Str. 67");
-        client2 = new Client("Kiryu Kazuma", "Timisoara, Str. 68");
+        client1 = new Client.Builder("John Pork", "Timisoara, Str. 67").build();
+        client2 = new Client.Builder("Kiryu Kazuma", "Timisoara, Str. 68").build();
         client1.addAccount(new AccountEUR("EUR001", 200.0));
         client1.addAccount(new AccountRON("RON001", 400.0));
         client2.addAccount(new AccountRON("RON002", 100.0));

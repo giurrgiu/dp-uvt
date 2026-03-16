@@ -1,8 +1,8 @@
 package ro.uvt.fi.dp;
 
 import ro.uvt.fi.dp.account.Account;
-import ro.uvt.fi.dp.account.AccountEUR;
-import ro.uvt.fi.dp.account.AccountRON;
+import ro.uvt.fi.dp.account.AccountFactory;
+import ro.uvt.fi.dp.account.Currency;
 import ro.uvt.fi.dp.bank.Bank;
 import ro.uvt.fi.dp.client.Client;
 
@@ -14,13 +14,13 @@ public class Test {
 		 */
 		Bank bcr = new Bank("BCR Bank");
 		// Client Ionescu has an EUR and a RON account
-		Client cl1 = new Client("Ionescu Ion", "Timisoara");
-		cl1.addAccount(new AccountEUR("EUR124", 200.9));
-		cl1.addAccount(new AccountRON("RON1234", 400));
+		Client cl1 = new Client.Builder("Ionescu Ion", "Timisoara").build();
+		cl1.addAccount(AccountFactory.createAccount(Currency.EUR, "EUR124", 200.9));
+		cl1.addAccount(AccountFactory.createAccount(Currency.RON, "RON1234", 400));
 		bcr.addClient(cl1);
 		// Client Marinescu has a RON account
-		Client cl2 = new Client("Marinescu Marin", "Timisoara");
-		cl2.addAccount(new AccountRON("RON126", 100));
+		Client cl2 = new Client.Builder("Marinescu Marin", "Timisoara").build();
+		cl2.addAccount(AccountFactory.createAccount(Currency.RON, "RON126", 100));
 		bcr.addClient(cl2);
 		System.out.println(bcr);
 
@@ -28,8 +28,8 @@ public class Test {
 		 * Create bank CEC with one client
 		 */
 		Bank cec = new Bank("CEC Bank");
-		Client clientCEC = new Client("Vasilescu Vasile", "Brasov");
-		clientCEC.addAccount(new AccountEUR("EUR128", 700));
+		Client clientCEC = new Client.Builder("Vasilescu Vasile", "Brasov").build();
+		clientCEC.addAccount(AccountFactory.createAccount(Currency.EUR, "EUR128", 700));
 		cec.addClient(clientCEC);
 		System.out.println(cec);
 
@@ -54,5 +54,8 @@ public class Test {
 		Account a2 = bcr.getClient("Ionescu Ion").getAccount("RON1234");
 		a1.transferTo(a2, 40);
 		System.out.println(bcr);
+
+		a1.printStatement();
+		a2.printStatement();
 	}
 }
