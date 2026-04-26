@@ -1,6 +1,7 @@
 package ro.uvt.fi.dp.account;
 
 import ro.uvt.fi.dp.logging.AppLogger;
+import ro.uvt.fi.dp.visitor.AccountVisitor;
 
 public class AccountRON extends Account {
 
@@ -36,6 +37,11 @@ public class AccountRON extends Account {
 
         log.success("TRANSFER COMPLETE: source balance=" + getAmount()
                 + " " + getCurrency() + ", dest balance=" + dest.getAmount() + " " + dest.getCurrency());
+    }
+
+    @Override
+    public String accept(AccountVisitor visitor) {
+        return visitor.visit(this);
     }
 
     @Override

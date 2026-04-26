@@ -2,6 +2,7 @@ package ro.uvt.fi.dp.account;
 
 import ro.uvt.fi.dp.exception.InvalidAmountException;
 import ro.uvt.fi.dp.logging.AppLogger;
+import ro.uvt.fi.dp.visitor.AccountVisitor;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,6 +21,12 @@ public abstract class Account implements Operations, Transfer {
         this.amount = 0;
         this.history = new ArrayList<>();
         depose(initialAmount);
+    }
+
+    protected Account(Account wrapped) {
+        this.accountCode = wrapped.getAccountCode();
+        this.amount = 0;
+        this.history = new ArrayList<>();
     }
 
     @Override
@@ -105,6 +112,8 @@ public abstract class Account implements Operations, Transfer {
     public abstract double getInterest();
 
     public abstract Currency getCurrency();
+
+    public abstract String accept(AccountVisitor visitor);
 
     @Override
     public abstract void transferTo(Account dest, double amount);
