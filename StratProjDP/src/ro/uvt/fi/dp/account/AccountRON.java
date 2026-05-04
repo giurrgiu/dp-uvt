@@ -5,6 +5,8 @@ import ro.uvt.fi.dp.visitor.AccountVisitor;
 
 public class AccountRON extends Account {
 
+    private static final long serialVersionUID = 1L;
+
     private static final AppLogger log = AppLogger.getInstance();
 
     public AccountRON(String accountCode, double amount) {

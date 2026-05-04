@@ -4,6 +4,8 @@ import ro.uvt.fi.dp.logging.AppLogger;
 
 public class NotificationDecorator extends AccountDecorator {
 
+    private static final long serialVersionUID = 1L;
+
     private final String notificationType;
     private static final AppLogger log = AppLogger.getInstance();
 

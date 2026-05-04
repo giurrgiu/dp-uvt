@@ -6,6 +6,8 @@ import java.util.List;
 
 public abstract class AccountDecorator extends Account {
 
+    private static final long serialVersionUID = 1L;
+
     protected final Account wrapped;
 
     protected AccountDecorator(Account wrapped) {

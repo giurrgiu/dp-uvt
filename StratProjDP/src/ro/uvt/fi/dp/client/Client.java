@@ -3,10 +3,14 @@ package ro.uvt.fi.dp.client;
 import ro.uvt.fi.dp.account.Account;
 import ro.uvt.fi.dp.logging.AppLogger;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class Client {
+public class Client implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     // required fields
     private final String name;
@@ -48,6 +52,14 @@ public class Client {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public List<Account> getAccounts() {
+        return Collections.unmodifiableList(accounts);
     }
 
     @Override

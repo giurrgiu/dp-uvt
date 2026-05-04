@@ -1,9 +1,12 @@
 package ro.uvt.fi.dp.account;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Transaction {
+public class Transaction implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     public enum Type {
         DEPOSE,

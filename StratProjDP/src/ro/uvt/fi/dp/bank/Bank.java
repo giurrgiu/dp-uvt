@@ -3,10 +3,14 @@ package ro.uvt.fi.dp.bank;
 import ro.uvt.fi.dp.client.Client;
 import ro.uvt.fi.dp.logging.AppLogger;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class Bank {
+public class Bank implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private String bankCode;
     private List<Client> clients;
@@ -38,5 +42,13 @@ public class Bank {
     @Override
     public String toString() {
         return "Bank [code=" + bankCode + ", clients=" + clients + "]";
+    }
+
+    public String getBankCode() {
+        return bankCode;
+    }
+
+    public List<Client> getClients() {
+        return Collections.unmodifiableList(clients);
     }
 }

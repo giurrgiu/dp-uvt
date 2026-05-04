@@ -1,6 +1,8 @@
 package ro.uvt.fi.dp.account;
 
-public interface Operations {
+import java.io.Serializable;
+
+public interface Operations extends Serializable {
     double getTotalAmount();
 
     void depose(double amount);

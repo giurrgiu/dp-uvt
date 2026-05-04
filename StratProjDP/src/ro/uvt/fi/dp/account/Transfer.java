@@ -1,5 +1,7 @@
 package ro.uvt.fi.dp.account;
 
-public interface Transfer {
+import java.io.Serializable;
+
+public interface Transfer extends Serializable {
     void transferTo(Account dest, double amount);
 }

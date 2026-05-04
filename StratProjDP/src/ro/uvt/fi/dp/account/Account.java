@@ -10,6 +10,8 @@ import java.util.List;
 
 public abstract class Account implements Operations, Transfer {
 
+    private static final long serialVersionUID = 1L;
+
     private String accountCode;
     private double amount;
     private List<Transaction> history;

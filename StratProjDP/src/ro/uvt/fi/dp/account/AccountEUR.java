@@ -5,6 +5,8 @@ import ro.uvt.fi.dp.visitor.AccountVisitor;
 
 public class AccountEUR extends Account {
 
+    private static final long serialVersionUID = 1L;
+
     private static final AppLogger log = AppLogger.getInstance();
 
     public AccountEUR(String accountCode, double amount) {
